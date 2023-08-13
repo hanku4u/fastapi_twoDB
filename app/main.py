@@ -8,10 +8,6 @@ app = FastAPI()
 SessionLocalMain = sessionmaker(bind=engine)
 SessionLocalCache = sessionmaker(bind=cache_engine)
 
-# Create tables if they do not exist
-main_metadata.create_all(bind=engine)
-cache_metadata.create_all(bind=cache_engine)
-
 @app.post("/create_user/")
 def create_user(username: str):
     session_main = SessionLocalMain()
