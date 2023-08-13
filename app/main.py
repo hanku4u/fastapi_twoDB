@@ -5,6 +5,12 @@ from models import User, Cache, main_metadata, cache_metadata
 
 app = FastAPI()
 
+# For the main PostgreSQL database
+main_metadata.create_all(bind=engine)
+
+# For the SQLite cache database
+cache_metadata.create_all(bind=cache_engine)
+
 SessionLocalMain = sessionmaker(bind=engine)
 SessionLocalCache = sessionmaker(bind=cache_engine)
 
